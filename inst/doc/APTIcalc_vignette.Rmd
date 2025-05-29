@@ -1,0 +1,183 @@
+---
+title: "Getting Started with APTIcalc"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with APTIcalc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = TRUE
+)
+```
+
+## Introduction
+
+Welcome to `APTIcalc`, an elegant and powerful R package designed for environmental scientists, urban planners, and researchers passionate about combating air pollution. The Air Pollution Tolerance Index (APTI) offers scientifically robust method to evaluate how well plants can endure air pollutants. By harnessing four key biochemical parameters—ascorbic acid content (A), total chlorophyll content (TC), leaf extract pH (P), and relative water content (R)—`APTIcalc` empowers users to identify pollution-tolerant species and visualize their potential in environmental management. This vignette is your gateway to mastering `APTIcalc`, guiding you through its core functions and an intuitive Shiny app with clarity and inspiration.
+
+### What is APTI?
+
+The Air Pollution Tolerance Index (APTI) is a transformative metric that reveals a plant’s resilience against air pollutants like sulfur dioxide, particulate matter, and nitrogen oxides. By quantifying the interplay of biochemical traits, APTI identifies species capable of thriving in polluted environments, making it a cornerstone for ecological restoration and urban greening.
+
+The four biochemical parameters are:
+- **Ascorbic Acid Content (A)**: An antioxidant measured in mg/g dry weight, shielding plants from pollutant-induced oxidative stress.
+- **Total Chlorophyll Content (TC)**: Measured in mg/g dry weight, this reflects photosynthetic vitality, often diminished by pollution.
+- **Leaf Extract pH (P)**: Indicates a plant’s capacity to buffer acidic pollutants, crucial for survival in harsh conditions.
+- **Relative Water Content (R)**: Expressed as a percentage, this measures hydration, bolstering resilience against environmental stress.
+
+### Why APTI Matters
+
+APTI is more than a scientific index—it’s a tool for change. Its applications inspire action across diverse fields:
+- **Green Belts**: Select robust species to create natural barriers around industrial zones and highways.
+- **Air Quality Monitoring**: Use plants as bioindicators to track pollution levels and protect ecosystems.
+- **Urban Resilience**: Design cityscapes with plants that purify air and reduce noise, enhancing quality of life.
+- **Scientific Discovery**: Fuel research into plant-pollution interactions, paving the way for innovative solutions.
+
+### How APTI is Calculated
+
+The APTI is elegantly computed using the formula:
+
+\[
+\text{APTI} = \frac{\text{A} \times (\text{TC} + \text{P}) + \text{R}}{10}
+\]
+
+Where:
+- \(\text{A}\): Ascorbic acid content (mg/g dry weight)
+- \(\text{TC}\): Total chlorophyll content (mg/g dry weight)
+- \(\text{P}\): Leaf extract pH
+- \(\text{R}\): Relative water content (%)
+
+This formula harmonizes the biochemical parameters into a single, scaled index, making it easy to interpret and apply.
+
+### Interpreting APTI Values
+
+APTI values offer clear insights into plant tolerance:
+- **Sensitive (< 12)**: Plants vulnerable to pollution, best suited for pristine environments.
+- **Intermediate (13–20)**: Plants with moderate resilience, ideal for semi-urban or transitional areas.
+- **Tolerant (> 20)**: Hardy species that excel in high-pollution zones, perfect for industrial and urban settings.
+
+### Factors Shaping APTI
+
+APTI is dynamic, influenced by:
+- **Pollutant Types**: From ozone to heavy metals, each pollutant uniquely affects plant biochemistry.
+- **Environmental Context**: Seasonal shifts, temperature, and humidity alter parameter measurements.
+- **Location**: Urban and industrial areas challenge plants differently than rural landscapes.
+
+### Applications That Inspire
+
+APTI transforms environmental strategies by:
+- **Building Green Belts**: Planting tolerant species to shield communities from pollution.
+- **Mitigating Pollution**: Leveraging plants to cleanse air and enhance urban ecosystems.
+- **Reducing Noise**: Creating natural sound barriers for quieter, healthier cities.
+- **Monitoring Health**: Using plants as sentinels to gauge air quality and ecosystem vitality.
+- **Advancing Urban Forestry**: Crafting vibrant, resilient cityscapes with pollution-fighting flora.
+
+## Installation
+
+Begin your journey with `APTIcalc` by installing it from GitHub using `devtools`. This ensures access to the package and its beautifully crafted vignette:
+
+```R
+# Install devtools if needed
+install.packages("devtools")
+# Install APTIcalc with vignette
+devtools::install_github("username/APTIcalc", build_vignettes = TRUE)
+library(APTIcalc)
+```
+
+## Calculating APTI
+
+The `compute_apti` function is the cornerstone of `APTIcalc`, seamlessly applying the APTI formula to your data. It accepts four numeric vectors (A, TC, P, R) and delivers a comprehensive analysis of plant tolerance.
+
+### Try It with Sample Data
+
+`APTIcalc` includes a sample dataset (`inst/extdata/sample_data.csv`) to spark exploration. Here’s how to dive in:
+
+```R
+library(APTIcalc)
+data <- read.csv(system.file("extdata", "sample_data.csv", package = "APTIcalc"))
+result <- with(data, comp_apti(A, TC, P, R))
+head(result)
+```
+
+This code:
+1. Loads the sample data with columns `A`, `TC`, `P`, and `R`.
+2. Invokes `compute_apti` to calculate APTI values.
+3. Returns a data frame with inputs, APTI scores, and tolerance categories.
+
+### Unlocking Insights
+
+The output is a treasure trove of information:
+- **Inputs (A, TC, P, R)**: Your biochemical parameters, preserved for reference.
+- **APTI**: The calculated index, revealing each plant’s tolerance.
+- **Category**: Labels plants as Sensitive, Intermediate, or Tolerant, guiding practical decisions.
+
+For instance, a plant with an APTI of 22 is Tolerant, ideal for a bustling industrial zone, while an APTI of 8 signals sensitivity, better suited for cleaner environments.
+
+### Real-World Impact
+
+Leverage the results to:
+- **Curate Green Belts**: Prioritize Tolerant plants for maximum pollution resistance.
+- **Inform Policy**: Compare species across regions to shape environmental strategies.
+- **Track Trends**: Monitor APTI over time to gauge pollution’s toll on flora.
+
+## Shiny App
+
+Discover the joy of interactive analysis with `APTIcalc`’s Shiny app, a visual masterpiece that brings APTI calculations to life. Launch it with:
+
+```R
+run_apti_app()
+```
+
+### Exploring the Shiny App
+
+The app is a gateway to effortless APTI analysis:
+1. **Upload Your Data**:
+   - Use the “Upload CSV File” button to select a CSV with columns `A`, `TC`, `P`, `R`.
+   - The app ensures your file meets the required format, providing instant feedback.
+
+2. **Dive into Results**:
+   - **Data Tab**: An interactive table showcases your data, APTI values, and tolerance categories. Sort, filter, and explore with ease.
+   - **Plots Tab**: Two stunning visualizations await:
+     - **Histogram**: A colorful display of APTI distribution, with red (Sensitive), yellow (Intermediate), and green (Tolerant) bars, revealing your dataset’s tolerance profile.
+     - **Scatter Plot**: Maps APTI against ascorbic acid content (A), with color-coded points highlighting tolerance patterns and biochemical relationships.
+   - Interact with plots by zooming or hovering (environment permitting).
+
+3. **Save Your Work**:
+   - Download results as a CSV (e.g., `apti_results_2025-05-20.csv`) with the “Download Results” button, preserving your analysis.
+
+### Why You’ll Love the App
+
+The Shiny app is perfect for:
+- **Researchers**: Analyze field data without coding, focusing on insights.
+- **Planners**: Visualize plant tolerance to guide urban and industrial projects.
+- **Educators**: Engage students with interactive APTI demonstrations.
+
+## Sample Data
+
+`APTIcalc` offers a thoughtfully curated sample dataset in `inst/extdata/sample_data.csv`, designed to ignite your exploration. With 15 plant samples, it captures a spectrum of tolerance levels across four columns:
+- **A**: Ascorbic acid content (mg/g dry weight)
+- **TC**: Total chlorophyll content (mg/g dry weight)
+- **P**: Leaf extract pH
+- **R**: Relative water content (%)
+
+Access it with:
+
+```R
+sample_data <- read.csv(system.file("extdata", "sample_data.csv", package = "APTIcalc"))
+head(sample_data)
+```
+
+This dataset is your playground for:
+- Testing `comp_apti` and validating calculations.
+- Experimenting with the Shiny app’s features.
+- Learning the ideal format for your own data.
+
+## References
+
+- Singh, S., & Rao, D. (1983). Evaluation of plants for their tolerance to air pollution. *Proceedings of Symposium on Air Pollution Control*, 1, 218–224.
+- Thakar, B., & Mishra, P. C. (2010). Dust collection potential and air pollution tolerance index of tree vegetation around Vedanta Aluminium Limited, Jharsuguda. *The Bioscan*, 3, 603–612.
+- Sahu, C., Basti, S., & Sahu, S. K. (2020). Air pollution tolerance index (APTI) and expected performance index (EPI) of trees in Sambalpur town of India. *SN Applied Sciences*, 2, 1327. https://doi.org/10.1007/s42452-020-3120-6

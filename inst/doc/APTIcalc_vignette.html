@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Getting Started with APTIcalc</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Getting Started with APTIcalc</h1>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Welcome to <code>APTIcalc</code>, an elegant and powerful R package
+designed for environmental scientists, urban planners, and researchers
+passionate about combating air pollution. The Air Pollution Tolerance
+Index (APTI) offers scientifically robust method to evaluate how well
+plants can endure air pollutants. By harnessing four key biochemical
+parameters—ascorbic acid content (A), total chlorophyll content (TC),
+leaf extract pH (P), and relative water content
+(R)—<code>APTIcalc</code> empowers users to identify pollution-tolerant
+species and visualize their potential in environmental management. This
+vignette is your gateway to mastering <code>APTIcalc</code>, guiding you
+through its core functions and an intuitive Shiny app with clarity and
+inspiration.</p>
+<div id="what-is-apti" class="section level3">
+<h3>What is APTI?</h3>
+<p>The Air Pollution Tolerance Index (APTI) is a transformative metric
+that reveals a plant’s resilience against air pollutants like sulfur
+dioxide, particulate matter, and nitrogen oxides. By quantifying the
+interplay of biochemical traits, APTI identifies species capable of
+thriving in polluted environments, making it a cornerstone for
+ecological restoration and urban greening.</p>
+<p>The four biochemical parameters are: - <strong>Ascorbic Acid Content
+(A)</strong>: An antioxidant measured in mg/g dry weight, shielding
+plants from pollutant-induced oxidative stress. - <strong>Total
+Chlorophyll Content (TC)</strong>: Measured in mg/g dry weight, this
+reflects photosynthetic vitality, often diminished by pollution. -
+<strong>Leaf Extract pH (P)</strong>: Indicates a plant’s capacity to
+buffer acidic pollutants, crucial for survival in harsh conditions. -
+<strong>Relative Water Content (R)</strong>: Expressed as a percentage,
+this measures hydration, bolstering resilience against environmental
+stress.</p>
+</div>
+<div id="why-apti-matters" class="section level3">
+<h3>Why APTI Matters</h3>
+<p>APTI is more than a scientific index—it’s a tool for change. Its
+applications inspire action across diverse fields: - <strong>Green
+Belts</strong>: Select robust species to create natural barriers around
+industrial zones and highways. - <strong>Air Quality
+Monitoring</strong>: Use plants as bioindicators to track pollution
+levels and protect ecosystems. - <strong>Urban Resilience</strong>:
+Design cityscapes with plants that purify air and reduce noise,
+enhancing quality of life. - <strong>Scientific Discovery</strong>: Fuel
+research into plant-pollution interactions, paving the way for
+innovative solutions.</p>
+</div>
+<div id="how-apti-is-calculated" class="section level3">
+<h3>How APTI is Calculated</h3>
+<p>The APTI is elegantly computed using the formula:</p>
+<p><span class="math display">\[
+\text{APTI} = \frac{\text{A} \times (\text{TC} + \text{P}) +
+\text{R}}{10}
+\]</span></p>
+<p>Where: - <span class="math inline">\(\text{A}\)</span>: Ascorbic acid
+content (mg/g dry weight) - <span class="math inline">\(\text{TC}\)</span>: Total chlorophyll content
+(mg/g dry weight) - <span class="math inline">\(\text{P}\)</span>: Leaf
+extract pH - <span class="math inline">\(\text{R}\)</span>: Relative
+water content (%)</p>
+<p>This formula harmonizes the biochemical parameters into a single,
+scaled index, making it easy to interpret and apply.</p>
+</div>
+<div id="interpreting-apti-values" class="section level3">
+<h3>Interpreting APTI Values</h3>
+<p>APTI values offer clear insights into plant tolerance: -
+<strong>Sensitive (&lt; 12)</strong>: Plants vulnerable to pollution,
+best suited for pristine environments. - <strong>Intermediate
+(13–20)</strong>: Plants with moderate resilience, ideal for semi-urban
+or transitional areas. - <strong>Tolerant (&gt; 20)</strong>: Hardy
+species that excel in high-pollution zones, perfect for industrial and
+urban settings.</p>
+</div>
+<div id="factors-shaping-apti" class="section level3">
+<h3>Factors Shaping APTI</h3>
+<p>APTI is dynamic, influenced by: - <strong>Pollutant Types</strong>:
+From ozone to heavy metals, each pollutant uniquely affects plant
+biochemistry. - <strong>Environmental Context</strong>: Seasonal shifts,
+temperature, and humidity alter parameter measurements. -
+<strong>Location</strong>: Urban and industrial areas challenge plants
+differently than rural landscapes.</p>
+</div>
+<div id="applications-that-inspire" class="section level3">
+<h3>Applications That Inspire</h3>
+<p>APTI transforms environmental strategies by: - <strong>Building Green
+Belts</strong>: Planting tolerant species to shield communities from
+pollution. - <strong>Mitigating Pollution</strong>: Leveraging plants to
+cleanse air and enhance urban ecosystems. - <strong>Reducing
+Noise</strong>: Creating natural sound barriers for quieter, healthier
+cities. - <strong>Monitoring Health</strong>: Using plants as sentinels
+to gauge air quality and ecosystem vitality. - <strong>Advancing Urban
+Forestry</strong>: Crafting vibrant, resilient cityscapes with
+pollution-fighting flora.</p>
+</div>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>Begin your journey with <code>APTIcalc</code> by installing it from
+GitHub using <code>devtools</code>. This ensures access to the package
+and its beautifully crafted vignette:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Install devtools if needed</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Install APTIcalc with vignette</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;username/APTIcalc&quot;</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(APTIcalc)</span></code></pre></div>
+</div>
+<div id="calculating-apti" class="section level2">
+<h2>Calculating APTI</h2>
+<p>The <code>compute_apti</code> function is the cornerstone of
+<code>APTIcalc</code>, seamlessly applying the APTI formula to your
+data. It accepts four numeric vectors (A, TC, P, R) and delivers a
+comprehensive analysis of plant tolerance.</p>
+<div id="try-it-with-sample-data" class="section level3">
+<h3>Try It with Sample Data</h3>
+<p><code>APTIcalc</code> includes a sample dataset
+(<code>inst/extdata/sample_data.csv</code>) to spark exploration. Here’s
+how to dive in:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(APTIcalc)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;sample_data.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;APTIcalc&quot;</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">comp_apti</span>(A, TC, P, R))</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">head</span>(result)</span></code></pre></div>
+<p>This code: 1. Loads the sample data with columns <code>A</code>,
+<code>TC</code>, <code>P</code>, and <code>R</code>. 2. Invokes
+<code>compute_apti</code> to calculate APTI values. 3. Returns a data
+frame with inputs, APTI scores, and tolerance categories.</p>
+</div>
+<div id="unlocking-insights" class="section level3">
+<h3>Unlocking Insights</h3>
+<p>The output is a treasure trove of information: - <strong>Inputs (A,
+TC, P, R)</strong>: Your biochemical parameters, preserved for
+reference. - <strong>APTI</strong>: The calculated index, revealing each
+plant’s tolerance. - <strong>Category</strong>: Labels plants as
+Sensitive, Intermediate, or Tolerant, guiding practical decisions.</p>
+<p>For instance, a plant with an APTI of 22 is Tolerant, ideal for a
+bustling industrial zone, while an APTI of 8 signals sensitivity, better
+suited for cleaner environments.</p>
+</div>
+<div id="real-world-impact" class="section level3">
+<h3>Real-World Impact</h3>
+<p>Leverage the results to: - <strong>Curate Green Belts</strong>:
+Prioritize Tolerant plants for maximum pollution resistance. -
+<strong>Inform Policy</strong>: Compare species across regions to shape
+environmental strategies. - <strong>Track Trends</strong>: Monitor APTI
+over time to gauge pollution’s toll on flora.</p>
+</div>
+</div>
+<div id="shiny-app" class="section level2">
+<h2>Shiny App</h2>
+<p>Discover the joy of interactive analysis with <code>APTIcalc</code>’s
+Shiny app, a visual masterpiece that brings APTI calculations to life.
+Launch it with:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">run_apti_app</span>()</span></code></pre></div>
+<div id="exploring-the-shiny-app" class="section level3">
+<h3>Exploring the Shiny App</h3>
+<p>The app is a gateway to effortless APTI analysis: 1. <strong>Upload
+Your Data</strong>: - Use the “Upload CSV File” button to select a CSV
+with columns <code>A</code>, <code>TC</code>, <code>P</code>,
+<code>R</code>. - The app ensures your file meets the required format,
+providing instant feedback.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Dive into Results</strong>:
+<ul>
+<li><strong>Data Tab</strong>: An interactive table showcases your data,
+APTI values, and tolerance categories. Sort, filter, and explore with
+ease.</li>
+<li><strong>Plots Tab</strong>: Two stunning visualizations await:
+<ul>
+<li><strong>Histogram</strong>: A colorful display of APTI distribution,
+with red (Sensitive), yellow (Intermediate), and green (Tolerant) bars,
+revealing your dataset’s tolerance profile.</li>
+<li><strong>Scatter Plot</strong>: Maps APTI against ascorbic acid
+content (A), with color-coded points highlighting tolerance patterns and
+biochemical relationships.</li>
+</ul></li>
+<li>Interact with plots by zooming or hovering (environment
+permitting).</li>
+</ul></li>
+<li><strong>Save Your Work</strong>:
+<ul>
+<li>Download results as a CSV (e.g.,
+<code>apti_results_2025-05-20.csv</code>) with the “Download Results”
+button, preserving your analysis.</li>
+</ul></li>
+</ol>
+</div>
+<div id="why-youll-love-the-app" class="section level3">
+<h3>Why You’ll Love the App</h3>
+<p>The Shiny app is perfect for: - <strong>Researchers</strong>: Analyze
+field data without coding, focusing on insights. -
+<strong>Planners</strong>: Visualize plant tolerance to guide urban and
+industrial projects. - <strong>Educators</strong>: Engage students with
+interactive APTI demonstrations.</p>
+</div>
+</div>
+<div id="sample-data" class="section level2">
+<h2>Sample Data</h2>
+<p><code>APTIcalc</code> offers a thoughtfully curated sample dataset in
+<code>inst/extdata/sample_data.csv</code>, designed to ignite your
+exploration. With 15 plant samples, it captures a spectrum of tolerance
+levels across four columns: - <strong>A</strong>: Ascorbic acid content
+(mg/g dry weight) - <strong>TC</strong>: Total chlorophyll content (mg/g
+dry weight) - <strong>P</strong>: Leaf extract pH - <strong>R</strong>:
+Relative water content (%)</p>
+<p>Access it with:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>sample_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;sample_data.csv&quot;</span>, <span class="at">package =</span> <span class="st">&quot;APTIcalc&quot;</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">head</span>(sample_data)</span></code></pre></div>
+<p>This dataset is your playground for: - Testing <code>comp_apti</code>
+and validating calculations. - Experimenting with the Shiny app’s
+features. - Learning the ideal format for your own data.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li>Singh, S., &amp; Rao, D. (1983). Evaluation of plants for their
+tolerance to air pollution. <em>Proceedings of Symposium on Air
+Pollution Control</em>, 1, 218–224.</li>
+<li>Thakar, B., &amp; Mishra, P. C. (2010). Dust collection potential
+and air pollution tolerance index of tree vegetation around Vedanta
+Aluminium Limited, Jharsuguda. <em>The Bioscan</em>, 3, 603–612.</li>
+<li>Sahu, C., Basti, S., &amp; Sahu, S. K. (2020). Air pollution
+tolerance index (APTI) and expected performance index (EPI) of trees in
+Sambalpur town of India. <em>SN Applied Sciences</em>, 2, 1327. <a href="https://doi.org/10.1007/s42452-020-3120-6" class="uri">https://doi.org/10.1007/s42452-020-3120-6</a></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
