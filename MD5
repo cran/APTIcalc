@@ -1,4 +1,4 @@
-588ad9749d046216ad9430d5909209ea *DESCRIPTION
+51e4f6ace9314530c72ac6f322f89c17 *DESCRIPTION
 981fb2eb3f2352f5430c91660dc467f7 *NAMESPACE
 d734403991cc71a0da4b04905deea790 *R/comp_apti.R
 dd2667c724b200e2d1d02a95f98e9bd9 *R/sample_data.R
@@ -10,7 +10,7 @@ a2d91aa6c732060f41c1f63c082600e1 *inst/doc/APTIcalc_vignette.Rmd
 fa1c7b7ebf2a49b4d31be7438e066482 *inst/doc/APTIcalc_vignette.html
 0c4fdb77b1c0462046381a4542b5bf6c *inst/extdata/sample_data.csv
 d41d8cd98f00b204e9800998ecf8427e *inst/shiny/Rplots.pdf
-305527b4aec5e37fb830d5d4e3a15f6e *inst/shiny/app.R
+e09568e18bd47ffdadd53b3e04f24bac *inst/shiny/app.R
 341059a34e2c8814c085179d6fb9faa2 *man/comp_apti.Rd
 3c595eb70e1d2ff0c2ab0128d2b1786b *man/run_apti_app.Rd
 9ded75c9431ab619551f23bae13f6511 *man/sample_data.Rd

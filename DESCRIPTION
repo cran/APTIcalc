@@ -1,8 +1,8 @@
 Package: APTIcalc
 Type: Package
 Title: Air Pollution Tolerance Index (APTI) Calculator
-Version: 0.1.0
-Authors@R: c( person("Nobin Chandra", "Paul", role = c("aut", "cre", "cph"), email = "ncp375@gmail.com"), person("Rupali", "Singh", role = c("aut", "cph")), person("Sangram B", "Chavan", role = c("aut", "cph")), person("Navyasree", "Ponnaganti", role = c("aut", "cph")))
+Version: 0.1.1
+Authors@R: c( person("Nobin Chandra", "Paul", role = c("aut", "cre", "cph"), email = "ncp375@gmail.com"), person("Rupali", "Singh", role = c("aut", "cph")), person("Sangram B", "Chavan", role = c("aut", "cph")), person("Navyasree", "Ponnaganti", role = c("aut", "cph")), person("K. Sammi", "Reddy", role = c("aut", "cph")))
 Depends: R (>= 3.5.0)
 Suggests: roxygen2, knitr, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
@@ -13,11 +13,12 @@ Imports: shiny, ggplot2
 RoxygenNote: 7.3.2
 LazyData: true
 NeedsCompilation: no
-Packaged: 2025-05-27 12:26:31 UTC; Asus
+Packaged: 2025-12-03 12:30:04 UTC; Asus
 Author: Nobin Chandra Paul [aut, cre, cph],
   Rupali Singh [aut, cph],
   Sangram B Chavan [aut, cph],
-  Navyasree Ponnaganti [aut, cph]
+  Navyasree Ponnaganti [aut, cph],
+  K. Sammi Reddy [aut, cph]
 Maintainer: Nobin Chandra Paul <ncp375@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-05-29 19:10:02 UTC
+Date/Publication: 2025-12-03 12:40:02 UTC
